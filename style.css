@@ -1,0 +1,51 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  min-width: 800px;
+}
+
+.navbar {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+}
+
+.navbar li {
+  padding: 10pt;
+  border-width: thin;
+  border-style: solid;
+  margin: 20pt;
+  background-color: brown;
+}
+
+main {
+  display: flex;
+  border-style: dotted;
+  width: 100%;
+  min-width: 800px;
+}
+
+.results {
+  padding: 30px;
+  margin: 5px;
+  background-color: lightgreen;
+  border-style: ridge;
+}
+
+.pictures {
+  background-color: orange;
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+  justify-content: space-around;
+  padding: 20px;
+  margin-top: 5px;
+}
+
+.info {
+  background-color: pink;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding: 10pt;
+  font-family: serif;
+}
