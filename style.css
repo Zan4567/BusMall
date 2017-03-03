@@ -19,10 +19,12 @@ header {
 }
 
 main {
+  width: 95%;
+  margin-left: 2.5%;
+  min-width: 800px;
   display: flex;
   border-style: dotted;
-  width: 100%;
-  min-width: 800px;
+  padding: 5px;
 }
 
 .results {
@@ -30,6 +32,8 @@ main {
   margin: 5px;
   background-color: lightgreen;
   border-style: ridge;
+  flex-grow: 0;
+  flex-shrink: 0;
 }
 
 .pictures {
@@ -37,9 +41,23 @@ main {
   display: flex;
   flex-direction: row;
   flex-grow: 1;
+  flex-shrink: 1;
   justify-content: space-around;
   padding: 20px;
   margin-top: 5px;
+  margin-right: 5px;
+}
+
+.imgholder {
+  width: 200px;
+  flex-grow: 1;
+  flex-shrink: 1;
+  margin: 5px;
+}
+
+.picture {
+  width: 100%;
+  border-style: solid;
 }
 
 .info {
@@ -48,4 +66,5 @@ main {
   margin-bottom: 5px;
   padding: 10pt;
   font-family: serif;
+  margin-right: 5px;
 }
