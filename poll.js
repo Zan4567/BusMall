@@ -47,7 +47,9 @@ Image.prototype.tally = function(chosen) {
 }
 
 Image.prototype.getPercent = function() {
-  return(this.score / this.appeared);
+  if(this.score === 0) return 0;
+  var prc = (this.score / this.appeared) * 100;
+  return Math.round(prc);
 }
 
 /**
@@ -56,7 +58,7 @@ Image.prototype.getPercent = function() {
  */
 var Tracker = {
   round: 0,
-  maxRounds: 15,
+  maxRounds: 25, //15?
   images: [],
 
   addImage: function(image) {
@@ -104,7 +106,7 @@ var Tracker = {
       console.log(this.images[i]);
     }
     this.round++;
-    if(this.round == this.maxRounds)
+    if(this.round >= this.maxRounds)
     {
       //finish the survey
       this.displayResults();
@@ -115,10 +117,11 @@ var Tracker = {
   },
 
   displayResults: function() {
+    rlist.innerHTML = '';
     for (var i in this.images) {
       var list_item = document.createElement('li');
       var theimg = this.images[i];
-      list_item.textContent = theimg.file + ' score: ' + theimg.score + '/' + theimg.appeared;
+      list_item.textContent = theimg.file + ' score: ' + theimg.score + '/' + theimg.appeared + ' ' + theimg.getPercent() + '%';
       rlist.appendChild(list_item);
       console.log(list_item);
     }
@@ -142,3 +145,6 @@ var setup = function() {
 //initial setup
 setup();
 Tracker.getNewImages();
+for (var i = 0; i < 25; i++) {
+  Tracker.picClick(0);
+}
