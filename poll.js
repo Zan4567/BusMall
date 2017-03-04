@@ -24,6 +24,8 @@ var choices = [];
 choices.push(document.getElementById('picture0'));
 choices.push(document.getElementById('picture1'));
 choices.push(document.getElementById('picture2'));
+var results = document.getElementById('results');
+var rlist = document.getElementById('resultslist');
 
 /**
  * [Image description]
@@ -96,13 +98,32 @@ var Tracker = {
   },
 
   picClick: function(winner) {
+    if(this.round >= this.maxRounds)return;
     for (var i = 0; i < choices.length; i++) {
       this.images[i].tally(winner === i);
       console.log(this.images[i]);
     }
     this.round++;
+    if(this.round == this.maxRounds)
+    {
+      //finish the survey
+      this.displayResults();
+      return;
+    }
     console.log('round ' + this.round);
     this.getNewImages();
+  },
+
+  displayResults: function() {
+    for (var i in this.images) {
+      var list_item = document.createElement('li');
+      var theimg = this.images[i];
+      list_item.textContent = theimg.file + ' score: ' + theimg.score + '/' + theimg.appeared;
+      rlist.appendChild(list_item);
+      console.log(list_item);
+    }
+
+    results.hidden = false;
   }
 }
 
