@@ -19,6 +19,7 @@ h1 {
   font-weight: bold;
   font-variant: small-caps;
   padding: 5pt;
+  white-space: nowrap;
 }
 
 .navbar {

@@ -25,8 +25,9 @@ choices.push(document.getElementById('picture0'));
 choices.push(document.getElementById('picture1'));
 choices.push(document.getElementById('picture2'));
 var results = document.getElementById('results');
+var show_r = document.getElementById('show_r');
+var reset = document.getElementById('reset');
 var rlist = document.getElementById('resultslist');
-
 /**
  * [Image description]
  * @param {[type]} file [description]
@@ -109,7 +110,8 @@ var Tracker = {
     if(this.round >= this.maxRounds)
     {
       //finish the survey
-      this.displayResults();
+      show_r.hidden = false;
+      reset.hidden = false;
       return;
     }
     console.log('round ' + this.round);
@@ -127,6 +129,17 @@ var Tracker = {
     }
 
     results.hidden = false;
+  },
+
+  reset: function() {
+    results.hidden = true;
+    show_r.hidden = true;
+    reset.hidden = true;
+    for (var i = 0; i < this.images.length; i++) {
+      this.images[i].score = this.images[i].appeared = 0;
+    }
+    this.round = 0;
+    this.getNewImages();
   }
 }
 
@@ -148,3 +161,12 @@ Tracker.getNewImages();
 // for (var i = 0; i < 25; i++) {
 //   Tracker.picClick(0);
 // }
+
+// If I don't wrap Tracker.displayResults in an anonymous fn, it interprets 'this' as meaning the button instead of the Tracker and doesn't work right.
+// wat.
+show_r.addEventListener('click', function() {Tracker.displayResults()});
+reset.addEventListener('click', function() {Tracker.reset()});
+for (var i = 0; i < choices.length; i++) {
+  //attach event listener to each picture.
+  choices[i].addEventListener('click', function() {Tracker.picClick(i);} );
+}
