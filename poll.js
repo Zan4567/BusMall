@@ -145,6 +145,6 @@ var setup = function() {
 //initial setup
 setup();
 Tracker.getNewImages();
-for (var i = 0; i < 25; i++) {
-  Tracker.picClick(0);
-}
+// for (var i = 0; i < 25; i++) {
+//   Tracker.picClick(0);
+// }
